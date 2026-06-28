@@ -1,6 +1,16 @@
 class Product:
 
     def __init__(self, name, price, quantity):
+
+        if not name or not isinstance(name, str):
+            raise ValueError("Product Name must be a non-empty string")
+
+        if not isinstance(price, (int, float)) and price <= 0:
+            raise ValueError("Product Price must be a non-negative integer")
+
+        if not isinstance(quantity, int) and quantity <= 0:
+            raise ValueError("Product Quantity must be a non-negative integer")
+
         self.name = name
         self.price = price
         self.quantity = quantity
