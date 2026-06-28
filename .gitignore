@@ -1,5 +1,9 @@
 # venv Dateien
 /.venv
 
-#idea
+# idea
 /.idea
+
+# pycache
+/__pycache__
+

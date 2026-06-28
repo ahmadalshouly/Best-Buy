@@ -1,3 +1,4 @@
+"""Main Program."""
 import products
 import store
 
@@ -9,6 +10,7 @@ product_list = [products.Product("MacBook Air M2", price=1450, quantity=100),
 best_buy = store.Store(product_list)
 
 def start(store_object: store.Store):
+    """Main Program. it starts the buy and order process."""
     while True:
         print("""Store Menu
    ----------
@@ -71,8 +73,8 @@ def start(store_object: store.Store):
                 try:
                     total_price = store_object.order(shopping_list)
                     print(f"Order made! Total payment: ${total_price}")
-                except Exception as e:
-                    print(f"Error processing order: {e}")
+                except Exception as err:
+                    print(f"Error processing order: {err}")
             else:
                 print("No items ordered.")
 

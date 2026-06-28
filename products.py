@@ -1,5 +1,9 @@
-class Product:
+"""
+    Author: Ahmad
+    This is the Product class"""
 
+class Product:
+    """ Product class"""
     def __init__(self, name, price, quantity):
 
         if not name or not isinstance(name, str):
@@ -17,26 +21,33 @@ class Product:
         self._active = True
 
     def get_quantity(self) -> int:
+        """ Returns the quantity of the product """
         return self.quantity
 
     def set_quantity(self, quantity):
+        """ Sets the quantity of the product """
         self.quantity = quantity
         if self.quantity == 0:
             self._active = False
 
     def is_active(self) -> bool:
+        """ Returns whether the product is active """
         return self._active
 
     def activate(self):
+        """ Activate the product """
         self._active = True
 
     def deactivate(self):
+        """ Deactivate the product """
         self._active = False
 
     def show(self):
+        """ Show the product """
         print(f"{self.name}, Price: {self.price}, Quantity: {self.quantity}")
 
     def buy(self, quantity) -> float:
+        """ Buy the product """
         if quantity > self.quantity:
             print(f"Not enough stock. Available: {self.quantity}")
 
