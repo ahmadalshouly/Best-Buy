@@ -9,10 +9,10 @@ class Product:
         if not name or not isinstance(name, str):
             raise ValueError("Product Name must be a non-empty string")
 
-        if not isinstance(price, (int, float)) and price <= 0:
+        if not isinstance(price, (int, float)) or price <= 0:
             raise ValueError("Product Price must be a non-negative integer")
 
-        if not isinstance(quantity, int) and quantity <= 0:
+        if not isinstance(quantity, int) or quantity <= 0:
             raise ValueError("Product Quantity must be a non-negative integer")
 
         self.name = name
@@ -48,9 +48,15 @@ class Product:
 
     def buy(self, quantity) -> float:
         """ Buy the product """
-        if quantity > self.quantity:
-            print(f"Not enough stock. Available: {self.quantity}")
+        if quantity <= 0:
+            raise ValueError("Product Quantity must be a non-negative integer")
 
-        total_price = quantity * self.price
-        self.set_quantity(self.quantity - quantity)
-        return total_price
+        if quantity > self.quantity:
+            raise ValueError("Not enough stock to buy this product")
+
+        self.quantity -= quantity
+
+        if self.quantity == 0:
+            self._active = False
+
+        return self.price * quantity
